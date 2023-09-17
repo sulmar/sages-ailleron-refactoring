@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome! This is the course repository for Design Pattern in C#
+Welcome! This is the course repository for Refactoring in C#
 
 To take this course you'll need the following.
 
