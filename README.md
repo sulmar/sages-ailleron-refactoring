@@ -1,4 +1,4 @@
-# Refaktoring in C#
+# Refactoring in C#
 
 ## Introduction
 
