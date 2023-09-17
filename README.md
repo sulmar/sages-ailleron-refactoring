@@ -1,4 +1,4 @@
-# Wzorce Projektowe w C#
+# Refaktoring in C#
 
 ## Introduction
 
