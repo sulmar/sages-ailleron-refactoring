@@ -69,6 +69,8 @@ namespace SimpleFactoryPattern
 
         private static void VisitCalculateAmountTest()
         {
+            VisitFactory visitFactory = new VisitFactory();
+
             while (true)
             {
                 Console.Write("Podaj rodzaj wizyty: (N)FZ (P)rywatna (F)irma: ");
@@ -78,8 +80,7 @@ namespace SimpleFactoryPattern
                 if (double.TryParse(Console.ReadLine(), out double minutes))
                 {
                     TimeSpan duration = TimeSpan.FromMinutes(minutes);
-
-                    VisitFactory visitFactory = new VisitFactory();
+                  
                     Visit visit = visitFactory.Create(visitType);
 
                     decimal totalAmount = visit.CalculateCost(duration, 100);
