@@ -1,13 +1,20 @@
 ﻿// Zasada segregacji interfejsów (Interface Segregation Principle) – ISP
 
-// Kod nie powinien być zmuszany do polegania na metodach, których nie używa.
+// Kod nie powinien być zmuszany do implementowania nieużywanych metod.
+
+// IEquatable
+// ICloneable
+// IDisposable
 
 
 // Przykład łamiący zasadę segregacji interfejsów
 
 IATM atm = new SecondATM(1000);
 
-atm.Withdraw(100);
+if (atm is IWithdraw withdraw)
+{
+    atm.Withdraw(100);
+}
 
 atm.Deposit(50);
 
@@ -17,11 +24,47 @@ Console.WriteLine(balance);
 
 
 
-public interface IATM
+public interface IATM : IWithdraw, IDeposit, IBalance
 {
-    bool Withdraw(decimal amount); // Wypłata
-    void Deposit(decimal amount); // Wpłata
+     
+}
+
+public interface IWithdraw
+{
+    bool Withdraw(decimal amount); // Wypłata    
+}
+
+public interface IBalance
+{
     decimal CheckBalance();
+}
+
+public interface IDeposit
+{
+    void Deposit(decimal amount); // Wpłata
+}
+
+
+
+public class WplatomatATM : IDeposit, IBalance
+{
+    private decimal _balance;
+
+    public WplatomatATM(decimal balance)
+    {
+        _balance = balance;
+    }
+
+    public decimal CheckBalance()
+    {
+        return _balance;
+    }
+
+    public void Deposit(decimal amount)
+    {
+        _balance += amount;
+    }
+   
 }
 
 public class SecondATM : IATM
@@ -108,4 +151,7 @@ public interface IMediaPlayer
     // void StreamContent();
 }
 
+
+// TODO: 1. Zaimplementuj Odtwarzacz tylko z funkcją PlayAudio
+// TODO: 2. Zaimplementuj Odtwarzacz z funkcją PlayAudio + PlayVideo
 
