@@ -1,5 +1,6 @@
 ﻿namespace SimpleFactoryPattern
 {
+    // Factory
     public class PaymentViewFactory
     {
         public static PaymentView Create(PaymentType paymentType)

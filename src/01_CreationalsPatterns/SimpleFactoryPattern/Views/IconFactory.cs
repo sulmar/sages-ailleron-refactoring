@@ -1,5 +1,6 @@
 ﻿namespace SimpleFactoryPattern
 {
+    // Factory
     public class IconFactory
     {
         public static string Create(PaymentType paymentType)

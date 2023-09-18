@@ -1,5 +1,6 @@
 ﻿namespace SimpleFactoryPattern
 {
+    // Factory
     public class ConsoleColorFactory
     {
         public static ConsoleColor Create(decimal amount) => amount switch

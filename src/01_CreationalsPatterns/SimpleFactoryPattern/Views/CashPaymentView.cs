@@ -2,6 +2,7 @@
 
 namespace SimpleFactoryPattern
 {
+    // Concrete Product A
     public class CashPaymentView : PaymentView
     {
         public override void Show(Payment payment)
