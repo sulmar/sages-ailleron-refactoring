@@ -2,9 +2,22 @@
 {
     public class TeleVisitCalculator : IVisitCalculator
     {
-        public decimal CalculateCost(TimeSpan duration, decimal pricePerHour)
+        private readonly decimal rate;
+
+        public TeleVisitCalculator()
+            : this(10m)
         {
-            return 10;
+
+        }
+
+        public TeleVisitCalculator(decimal rate)
+        {
+            this.rate = rate;
+        }
+
+        public decimal CalculateCost(Visit visit)
+        {
+            return rate;
         }
     }
 }

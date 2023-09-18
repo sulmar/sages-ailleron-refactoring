@@ -81,11 +81,11 @@ namespace SimpleFactoryPattern
                 {
                     TimeSpan duration = TimeSpan.FromMinutes(minutes);
 
-                    Visit visit = new Visit { Duration = duration, PricePerHour = 100 };
+                    Visit visit = new Visit { Duration = duration };
 
                     IVisitCalculator visitCalculator = visitCalculatorFactory.Create(visitType);
 
-                    decimal totalAmount = visitCalculator.CalculateCost(visit.Duration, visit.PricePerHour);
+                    decimal totalAmount = visitCalculator.CalculateCost(visit);
 
                     Console.ForegroundColor = ConsoleColorFactory.Create(totalAmount);
 

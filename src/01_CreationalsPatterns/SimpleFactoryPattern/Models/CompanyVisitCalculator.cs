@@ -2,11 +2,24 @@
 {
     public class CompanyVisitCalculator : IVisitCalculator
     {
-        private const decimal companyDiscountPercentage = 0.9m;
+        private readonly decimal companyDiscountPercentage;
+        private readonly decimal pricePerHour;
 
-        public decimal CalculateCost(TimeSpan duration, decimal pricePerHour)
+        public CompanyVisitCalculator()
+            : this(100m)
         {
-            return (decimal)duration.TotalHours * pricePerHour * companyDiscountPercentage;
+            
+        }
+
+        public CompanyVisitCalculator(decimal pricePerHour, decimal companyDiscountPercentage = 0.9m)
+        {
+            this.companyDiscountPercentage = companyDiscountPercentage;
+            this.pricePerHour = pricePerHour;
+        }
+
+        public decimal CalculateCost(Visit visit)
+        {
+            return (decimal)visit.Duration.TotalHours * pricePerHour * companyDiscountPercentage;
         }
     }
 }

@@ -6,7 +6,6 @@ namespace SimpleFactoryPattern
     {
         public DateTime VisitDate { get; set; }
         public TimeSpan Duration { get; set; }
-        public decimal PricePerHour { get; set; }
 
         public Visit()
         {

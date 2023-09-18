@@ -2,9 +2,9 @@
 {
     public class NfzVisitCalculator : IVisitCalculator
     {
-        public decimal CalculateCost(TimeSpan duration, decimal pricePerHour)
+        public decimal CalculateCost(Visit visit)
         {
-            return 0;
+            return decimal.Zero;
         }
     }
 }

@@ -3,6 +3,6 @@
 
     public interface IVisitCalculator
     {
-        decimal CalculateCost(TimeSpan duration, decimal pricePerHour);
+        decimal CalculateCost(Visit visit);
     }
 }

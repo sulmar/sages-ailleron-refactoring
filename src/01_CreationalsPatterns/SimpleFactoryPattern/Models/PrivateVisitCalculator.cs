@@ -3,9 +3,22 @@
   
     public class PrivateVisitCalculator : IVisitCalculator
     {
-        public decimal CalculateCost(TimeSpan duration, decimal pricePerHour)
+        private readonly decimal pricePerHour;
+
+        public PrivateVisitCalculator()
+            : this(100m)
         {
-            return (decimal)duration.TotalHours * pricePerHour;
+            
+        }
+
+        public PrivateVisitCalculator(decimal pricePerHour)
+        {
+            this.pricePerHour = pricePerHour;
+        }
+
+        public decimal CalculateCost(Visit visit)
+        {
+            return (decimal)visit.Duration.TotalHours * pricePerHour;
         }
     }
 }
