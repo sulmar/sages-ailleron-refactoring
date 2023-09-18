@@ -7,6 +7,10 @@
 // IDisposable
 
 
+IAudioPlayer player = new AudioVideoPlayer(new Mp3AudioPlayer());
+
+player.PlayAudio();
+
 // Przykład łamiący zasadę segregacji interfejsów
 
 IATM atm = new SecondATM(1000);
@@ -26,7 +30,7 @@ Console.WriteLine(balance);
 
 public interface IATM : IWithdraw, IDeposit, IBalance
 {
-     
+
 }
 
 public interface IWithdraw
@@ -64,7 +68,7 @@ public class WplatomatATM : IDeposit, IBalance
     {
         _balance += amount;
     }
-   
+
 }
 
 public class SecondATM : IATM
@@ -83,7 +87,7 @@ public class SecondATM : IATM
 
     public void Deposit(decimal amount)     // <-- problem
     {
-        throw new NotSupportedException();   
+        throw new NotSupportedException();
     }
 
     public bool Withdraw(decimal amount)
@@ -144,14 +148,67 @@ public class FirstATM : IATM
 }
 
 // Przykład 2
-public interface IMediaPlayer
+public interface IMediaPlayer : IAudioPlayer, IVideoPlayer
+{
+    // void StreamContent();
+}
+
+public interface IAudioPlayer
 {
     void PlayAudio();
+}
+
+public interface IVideoPlayer
+{
     void PlayVideo();
-    // void StreamContent();
 }
 
 
 // TODO: 1. Zaimplementuj Odtwarzacz tylko z funkcją PlayAudio
+public class StandardPlayer : IAudioPlayer
+{
+    public void PlayAudio()
+    {
+        Console.WriteLine("Playing audio...");
+    }    
+}
+
+public class Mp3AudioPlayer : IAudioPlayer
+{
+    public void PlayAudio()
+    {
+        Console.WriteLine("Playing audio mp3 format...");
+    }
+}
+
+public class ExtendedPlayer : StandardPlayer, IAudioPlayer, IVideoPlayer
+{
+    public void PlayVideo()
+    {
+        Console.WriteLine("Playing video...");
+    }
+}
+
+public class AudioVideoPlayer : IAudioPlayer, IVideoPlayer
+{
+    private IAudioPlayer audioPlayer;
+
+    public AudioVideoPlayer(IAudioPlayer audioPlayer)
+    {
+        this.audioPlayer = audioPlayer;
+    }
+
+    public void PlayAudio()
+    {
+        audioPlayer.PlayAudio();
+    }
+
+    public void PlayVideo()
+    {
+        Console.WriteLine("Playing video...");
+    }
+}
+
+
 // TODO: 2. Zaimplementuj Odtwarzacz z funkcją PlayAudio + PlayVideo
 
