@@ -93,21 +93,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlyweightPattern", "03_Beha
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00_SOLID", "00_SOLID", "{E792CEA7-48BD-4B1A-AC07-E56F1732977C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleResponsibilityPrinciple", "00_SOLID\SingleResponsibilityPrinciple\SingleResponsibilityPrinciple.csproj", "{1331F8BA-889B-457A-9DC8-1F41AF5C725F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingleResponsibilityPrinciple", "00_SOLID\SingleResponsibilityPrinciple\SingleResponsibilityPrinciple.csproj", "{1331F8BA-889B-457A-9DC8-1F41AF5C725F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntrfaceSegretationPrinciple", "00_SOLID\IntrfaceSegretationPrinciple\IntrfaceSegretationPrinciple.csproj", "{5F59F0AC-4510-41C3-840B-31E82961D4B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntrfaceSegretationPrinciple", "00_SOLID\IntrfaceSegretationPrinciple\IntrfaceSegretationPrinciple.csproj", "{5F59F0AC-4510-41C3-840B-31E82961D4B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyInversionPrinciple", "00_SOLID\DependencyInversionPrinciple\DependencyInversionPrinciple.csproj", "{E6DB686F-0187-47FB-9FA9-D7B1C8553E9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyInversionPrinciple", "00_SOLID\DependencyInversionPrinciple\DependencyInversionPrinciple.csproj", "{E6DB686F-0187-47FB-9FA9-D7B1C8553E9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiskovSubstitutionPrinciple", "00_SOLID\LiskovSubstitutionPrinciple\LiskovSubstitutionPrinciple.csproj", "{76F2FD48-4538-4C97-B4F6-A113FA712210}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiskovSubstitutionPrinciple", "00_SOLID\LiskovSubstitutionPrinciple\LiskovSubstitutionPrinciple.csproj", "{76F2FD48-4538-4C97-B4F6-A113FA712210}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenClosedPrinciple", "00_SOLID\OpenClosedPrinciple\OpenClosedPrinciple.csproj", "{9108F869-9953-49D7-A6F8-1D760F5A6A0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenClosedPrinciple", "00_SOLID\OpenClosedPrinciple\OpenClosedPrinciple.csproj", "{9108F869-9953-49D7-A6F8-1D760F5A6A0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtractMethod", "04_Refactoring\ExtractMethod\ExtractMethod.csproj", "{57B87F35-BDC1-4DE4-80DE-46B988C1B48E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtractMethod", "04_Refactoring\ExtractMethod\ExtractMethod.csproj", "{57B87F35-BDC1-4DE4-80DE-46B988C1B48E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04_Refaktoring", "04_Refaktoring", "{C8A418CC-4694-49BE-AF7A-31C03E7B7654}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtractClass", "04_Refactoring\ExtractClass\ExtractClass.csproj", "{F0CE149E-7E5F-4C44-90CA-95F85807AED8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtractClass", "04_Refactoring\ExtractClass\ExtractClass.csproj", "{F0CE149E-7E5F-4C44-90CA-95F85807AED8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Excercise1", "04_Refactoring\Excercise1\Excercise1.csproj", "{DB513CB1-5119-4EBD-A93F-9BEA77EC7660}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -307,6 +309,10 @@ Global
 		{F0CE149E-7E5F-4C44-90CA-95F85807AED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0CE149E-7E5F-4C44-90CA-95F85807AED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0CE149E-7E5F-4C44-90CA-95F85807AED8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB513CB1-5119-4EBD-A93F-9BEA77EC7660}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB513CB1-5119-4EBD-A93F-9BEA77EC7660}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB513CB1-5119-4EBD-A93F-9BEA77EC7660}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB513CB1-5119-4EBD-A93F-9BEA77EC7660}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -360,6 +366,7 @@ Global
 		{9108F869-9953-49D7-A6F8-1D760F5A6A0E} = {E792CEA7-48BD-4B1A-AC07-E56F1732977C}
 		{57B87F35-BDC1-4DE4-80DE-46B988C1B48E} = {C8A418CC-4694-49BE-AF7A-31C03E7B7654}
 		{F0CE149E-7E5F-4C44-90CA-95F85807AED8} = {C8A418CC-4694-49BE-AF7A-31C03E7B7654}
+		{DB513CB1-5119-4EBD-A93F-9BEA77EC7660} = {C8A418CC-4694-49BE-AF7A-31C03E7B7654}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AC97C506-DE41-412B-BB0D-1ECD765DD65D}
