@@ -46,14 +46,6 @@ class PostCodeValidator : IValidator
 }
 
 
-class User
-{
-    public string Username { get; set; }
-    public string HashedPassword { get; set; }
-    public string Email { get; set; }
-   
-}
-
 
 // Przykład #2 łamiący zasadę pojedynczej odpowiedzialności
 
@@ -82,6 +74,7 @@ public class User
 {
     public string Username { get; set; }
     public string HashedPassword { get; set; }
+    public string Email { get; set; }
 }
 public class Authentication
 {
