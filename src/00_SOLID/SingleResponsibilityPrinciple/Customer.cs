@@ -14,7 +14,7 @@ class Customer
     public string City { get; set; }
     public string PostCode { get; set; }
     public string Street { get; set; }
-    public string Email { get; set; }       
+    public string Email { get; set; }
 }
 
 
@@ -53,15 +53,33 @@ public class Student
 {
     public string Name { get; set; }
     public string Email { get; set; }
+}
 
-    public void Register()
+public class Registration
+{
+    public void Register(Student student)
     {
         // Register a student
         // Perform validation and save to DB
         Console.WriteLine("Registering the student");
     }
 
-    public void EnrollInCourse()
+    public void Unregister(Student student)
+    {
+        Console.WriteLine("Unregistering the student");
+    }
+}
+
+public class Course
+{
+    public string Title { get; set; }
+    public DateTime From { get; set; }
+    public DateTime To { get; set; }
+}
+
+public class CourseEnrollment
+{
+    public void EnrollInCourse(Student student, Course course)
     {
         // Enroll the student in a course
         // Perform validation and save to DB
@@ -70,26 +88,36 @@ public class Student
 }
 
 // Przykład #3
-public class User
+
+
+namespace Example3
 {
-    public string Username { get; set; }
-    public string HashedPassword { get; set; }
-    public string Email { get; set; }
-}
-public class Authentication
-{
-    //Register a user
-    public void RegisterUser(User user)
+
+    public class User
     {
+        public string Username { get; set; }
+        public string HashedPassword { get; set; }
+        public string Email { get; set; }
     }
 
-    // Perform user login
-    public void Login(string username, string password)
+    public class Authentication
     {
+        // Perform user login
+        public void Login(string username, string password)
+        {
+        }
+
+        // User logout
+        public void Logout()
+        {
+        }
     }
 
-    // User logout
-    public void Logout()
+    public class Registration
     {
+        //Register a user
+        public void RegisterUser(User user)
+        {
+        }
     }
 }
