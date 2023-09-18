@@ -191,7 +191,7 @@ public class ExtendedPlayer : StandardPlayer, IAudioPlayer, IVideoPlayer
 
 public class AudioVideoPlayer : IAudioPlayer, IVideoPlayer
 {
-    private IAudioPlayer audioPlayer;
+    private readonly IAudioPlayer audioPlayer;
 
     public AudioVideoPlayer(IAudioPlayer audioPlayer)
     {
