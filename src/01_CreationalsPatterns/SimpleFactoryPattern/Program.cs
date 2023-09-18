@@ -79,9 +79,10 @@ namespace SimpleFactoryPattern
                 {
                     TimeSpan duration = TimeSpan.FromMinutes(minutes);
 
-                    Visit visit = VisitFactory.Create(visitType, duration, 100);
+                    VisitFactory visitFactory = new VisitFactory();
+                    Visit visit = visitFactory.Create(visitType);
 
-                    decimal totalAmount = visit.CalculateCost();
+                    decimal totalAmount = visit.CalculateCost(duration, 100);
 
                     if (totalAmount == 0)
                         Console.ForegroundColor = ConsoleColor.Green;
