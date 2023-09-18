@@ -9,12 +9,12 @@ namespace SingletonPattern
         {
             Console.WriteLine("Hello Singleton Pattern!");
 
-            ConfigManagerTest();
+           // ConfigManagerTest();
 
 
-            //       LoggerTest();
+             // LoggerTest();
 
-            // LoadBalancerTest();
+            LoadBalancerTest();
 
             Console.ReadKey();
         }
@@ -22,19 +22,30 @@ namespace SingletonPattern
         private static void ConfigManagerTest()
         {
             // Module #1
-            ConfigManager configManager = new ConfigManager();
+            ConfigManager configManager = ConfigManager.Instance;
             configManager.Set("name", "Marcin");
 
             // Module #2
-            ConfigManager other = new ConfigManager();
+            ConfigManager other = ConfigManager.Instance;
             object result = other.Get("name");
             Console.WriteLine(result);
+
+            if (ReferenceEquals(configManager, other))
+            {
+                Console.WriteLine("The same instances");
+            }
+            else
+            {
+                Console.WriteLine("Not the same instances");
+            }
+
+
         }
 
         private static void LoggerTest()
         {
-            MessageService messageService = new MessageService();
-            PrintService printService = new PrintService();
+            MessageService messageService = new MessageService(Logger.Instance);
+            PrintService printService = new PrintService(Logger.Instance);
             messageService.Send("Hello World!");
             printService.Print("Hello World!", 3);
 
@@ -56,7 +67,7 @@ namespace SingletonPattern
 
         private static void LoadBalanceRequestTest(int numberOfRequests)
         {
-            LoadBalancer loadBalancer = new LoadBalancer();
+            LoadBalancer loadBalancer = LoadBalancer.Instance;
 
             for (int i = 0; i < numberOfRequests; i++)
             {

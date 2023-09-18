@@ -10,7 +10,27 @@ namespace SingletonPattern
 
         private readonly Random random = new Random();
 
-        public LoadBalancer()
+        private static object _syncLock = new object();
+
+        private static LoadBalancer _instance;
+        public static LoadBalancer Instance
+        {
+            get
+            {
+                lock (_syncLock)                // Monitor.Enter(object);
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new LoadBalancer();
+                    }
+                }                               // Monitor.Exit(object);
+
+                return _instance;
+
+            }
+        }
+
+        private LoadBalancer()
         {
             Console.WriteLine("Initialize");
 
