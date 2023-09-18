@@ -1,5 +1,4 @@
-﻿using FactoryMethodTemplate.Hugo;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace FactoryMethodTemplate.Razor
 {
@@ -20,16 +19,6 @@ namespace FactoryMethodTemplate.Razor
         protected virtual IViewEngine CreateViewEngine()
         {
             return new RazorViewEngine();
-        }
-    }
-
-    // Concrete Creator
-    public class HugoController : Controller
-    {
-       
-        protected override IViewEngine CreateViewEngine() // Factory Method
-        {
-            return new HugoViewEngine(); 
         }
     }
 }
