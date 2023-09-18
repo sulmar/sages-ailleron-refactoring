@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FactoryMethodTemplate.Razor
+namespace FactoryMethodTemplate.Hugo
 {
-
-    public class RazorViewEngine : IViewEngine
+    public class HugoViewEngine : IViewEngine
     {
         public string Render(string viewName, IDictionary<string, object> context)
         {
-            return "View rendered by Razor";
+            return "View rendered by Hugo";
         }
     }
 }
