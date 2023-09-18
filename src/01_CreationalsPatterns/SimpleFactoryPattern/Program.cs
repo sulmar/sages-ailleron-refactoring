@@ -10,9 +10,9 @@ namespace SimpleFactoryPattern
         {
             Console.WriteLine("Hello Factory Method Pattern!");
 
-            VisitCalculateAmountTest();
+           // VisitCalculateAmountTest();
 
-            // PaymentTest();
+             PaymentTest();
         }
 
 
@@ -31,41 +31,16 @@ namespace SimpleFactoryPattern
 
                 Payment payment = new Payment(paymentType, totalAmount);
 
-                if (payment.PaymentType == PaymentType.Cash)
-                {
-                    CashPaymentView cashPaymentView = new CashPaymentView();
-                    cashPaymentView.Show(payment);
-                }
-                else
-                if (payment.PaymentType == PaymentType.CreditCard)
-                {
-                    CreditCardPaymentView creditCardView = new CreditCardPaymentView();
-                    creditCardView.Show(payment);
-                }
-                else
-                if (payment.PaymentType == PaymentType.BankTransfer)
-                {
-                    BankTransferPaymentView bankTransferPaymentView = new BankTransferPaymentView();
-                    bankTransferPaymentView.Show(payment);
-                }
+                PaymentView paymentView = PaymentViewFactory.Create(paymentType);
+                paymentView.Show(payment);
 
-                string icon = GetIcon(payment);
+                string icon = IconFactory.Create(payment.PaymentType);
                 Console.WriteLine(icon);
             }
 
         }
 
-        private static string GetIcon(Payment payment)
-        {
-            switch (payment.PaymentType)
-            {
-                case PaymentType.Cash: return "[100]";
-                case PaymentType.CreditCard: return "[abc]";
-                case PaymentType.BankTransfer: return "[-->]";
-
-                default: return string.Empty;
-            }
-        }
+      
 
         private static void VisitCalculateAmountTest()
         {
