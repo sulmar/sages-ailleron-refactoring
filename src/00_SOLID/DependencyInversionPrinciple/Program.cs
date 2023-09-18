@@ -2,16 +2,15 @@
 // Wszystkie zależności powinny w jak największym stopniu zależeć od abstrakcji a nie od konkretnego typu.
 // Oznacza to, że w kodzie powinny być używane interfejsy lub klasy abstrakcyjne, zamiast bezpośrednio operować na konkretnych klasach.
     
-// Przykład łamiący zasadę odwracania zależności
 
-var controller = new ProductController(new DbProductRepository());
+var controller = new ProductController(new CloudProductRepository());
 var product = controller.Get(1);
 
 public class ProductController
 {
-    private DbProductRepository repository;
+    private readonly IProductRepository repository;
 
-    public ProductController(DbProductRepository repository)
+    public ProductController(IProductRepository repository)
     {
         this.repository = repository;
     } 
@@ -27,7 +26,19 @@ public class ProductController
     }
 }
 
-public class DbProductRepository
+
+// Szablon
+public interface IRepository<T>
+{
+    T GetById(int id);
+    void Add(T product);
+}
+
+public interface IProductRepository : IRepository<Product>
+{   
+}
+
+public class DbProductRepository : IProductRepository
 {
     public Product GetById(int id)
     {
@@ -40,14 +51,24 @@ public class DbProductRepository
     }
 }
 
-public class CloudProductRepository
+public class CloudProductRepository : IProductRepository
 {
-    public Product Load(int id)
+    public void Add(Product product)
+    {
+        Save(product);
+    }
+
+    public Product GetById(int id)
+    {
+        return Load(id);
+    }
+
+    private Product Load(int id)
     {
         throw new NotImplementedException();
     }
 
-    public void Save(Product product)
+    private void Save(Product product)
     {
 
     }
