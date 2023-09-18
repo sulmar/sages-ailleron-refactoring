@@ -14,23 +14,44 @@ class Customer
     public string City { get; set; }
     public string PostCode { get; set; }
     public string Street { get; set; }
-    public string Email { get; set; }
+    public string Email { get; set; }       
+}
 
-    public void ValidateEmail(string email)
+
+interface IValidator
+{
+    void Validate(string content);
+}
+
+class EmailValidator : IValidator
+{
+    public void Validate(string email)
     {
         if (!email.Contains("@") || !email.Contains("."))
         {
             throw new FormatException("Email address is a invalid format!");
         }
     }
+}
 
-    public void ValidatePostCode(string postcode)
+class PostCodeValidator : IValidator
+{
+    public void Validate(string postcode)
     {
         if (postcode.Length != 5)
         {
             throw new FormatException("Post code is a invalid format!");
         }
     }
+}
+
+
+class User
+{
+    public string Username { get; set; }
+    public string HashedPassword { get; set; }
+    public string Email { get; set; }
+   
 }
 
 
