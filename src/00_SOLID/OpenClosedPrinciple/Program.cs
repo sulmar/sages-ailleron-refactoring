@@ -3,38 +3,49 @@
 // Każda klasa powinna być otwarta na rozbudowę ale zamknięta na modyfikacje.
 // Oznacza to, że taka klasa pozwala na rozszerzenie swojego zachowania
 // bez modyfikowania kodu źródłowego.
-    
-// Przykład łamiący zasadę
-TaxCalculator calculator = new TaxCalculator();
 
-decimal standardTax = calculator.CalculateTax(60000, "Standard");
-decimal progressiveTax = calculator.CalculateTax(60000, "Progressive");
+ITaxCalculator standardTaxCalculator = new StandardTaxCalculator();
+ITaxCalculator progressiveTaxCalculator = new ProgressiveTaxCalculator(50_000);
+
+decimal standardTax = standardTaxCalculator.CalculateTax(60000);
+decimal progressiveTax = progressiveTaxCalculator.CalculateTax(60000);
 
 Console.WriteLine($"Standard Tax: {standardTax}");
 Console.WriteLine($"Progressive Tax: {progressiveTax}");
 
-public class TaxCalculator
+public interface ITaxCalculator
 {
-    private const decimal incomeLimit = 50_000;
+    decimal CalculateTax(decimal income);
+}
 
-    public decimal CalculateTax(decimal income, string type)
+public class StandardTaxCalculator : ITaxCalculator
+{
+    public decimal CalculateTax(decimal income)
+    {
+        return income * 0.2m; // Standard tax rate of 20%
+    }
+}
+
+public class ProgressiveTaxCalculator : ITaxCalculator
+{
+    private decimal incomeLimit;
+
+    public ProgressiveTaxCalculator(decimal incomeLimit)
+    {
+        this.incomeLimit = incomeLimit;
+    }
+
+    public decimal CalculateTax(decimal income)
     {
         decimal tax = 0;
 
-        if (type == "Standard")
+        if (income <= incomeLimit)    // Magic Number
         {
-            tax = income * 0.2m; // Standard tax rate of 20%
+            tax = income * 0.1m; // 10% tax for income up to 50000
         }
-        else if (type == "Progressive")
+        else
         {
-            if (income <= incomeLimit)    // Magic Number
-            {
-                tax = income * 0.1m; // 10% tax for income up to 50000
-            }
-            else
-            {
-                tax = income * 0.3m; // 30% tax for income above 50000
-            }
+            tax = income * 0.3m; // 30% tax for income above 50000
         }
 
         return tax;
