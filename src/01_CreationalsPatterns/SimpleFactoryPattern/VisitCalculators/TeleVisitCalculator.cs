@@ -1,5 +1,6 @@
-﻿namespace SimpleFactoryPattern
+﻿namespace SimpleFactoryPattern.VisitCalculators
 {
+    // Concrete Product C
     public class TeleVisitCalculator : IVisitCalculator
     {
         private readonly decimal rate;

@@ -1,5 +1,8 @@
-﻿namespace SimpleFactoryPattern
+﻿using SimpleFactoryPattern.VisitCalculators;
+
+namespace SimpleFactoryPattern
 {
+    // Factory
     public class VisitCalculatorFactory
     {
         private readonly Dictionary<string, Type> types = new Dictionary<string, Type>();
@@ -12,6 +15,7 @@
             types.Add("T", typeof(TeleVisitCalculator));
         }
 
+        // CreateProduct
         public IVisitCalculator Create(string symbol)
         {
             Type visitType = types[symbol];

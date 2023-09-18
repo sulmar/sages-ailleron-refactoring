@@ -1,4 +1,5 @@
 ﻿using System;
+using SimpleFactoryPattern.VisitCalculators;
 
 namespace SimpleFactoryPattern
 {

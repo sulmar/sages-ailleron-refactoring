@@ -1,5 +1,6 @@
-﻿namespace SimpleFactoryPattern
+﻿namespace SimpleFactoryPattern.VisitCalculators
 {
+    // Concrete Product C
     public class CompanyVisitCalculator : IVisitCalculator
     {
         private readonly decimal companyDiscountPercentage;
@@ -8,7 +9,7 @@
         public CompanyVisitCalculator()
             : this(100m)
         {
-            
+
         }
 
         public CompanyVisitCalculator(decimal pricePerHour, decimal companyDiscountPercentage = 0.9m)
