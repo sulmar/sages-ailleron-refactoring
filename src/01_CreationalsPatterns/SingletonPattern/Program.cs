@@ -9,11 +9,26 @@ namespace SingletonPattern
         {
             Console.WriteLine("Hello Singleton Pattern!");
 
-            LoggerTest();
+            ConfigManagerTest();
+
+
+            //       LoggerTest();
 
             // LoadBalancerTest();
 
             Console.ReadKey();
+        }
+
+        private static void ConfigManagerTest()
+        {
+            // Module #1
+            ConfigManager configManager = new ConfigManager();
+            configManager.Set("name", "Marcin");
+
+            // Module #2
+            ConfigManager other = new ConfigManager();
+            object result = other.Get("name");
+            Console.WriteLine(result);
         }
 
         private static void LoggerTest()
