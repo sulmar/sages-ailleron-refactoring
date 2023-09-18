@@ -50,7 +50,7 @@ namespace SimpleFactoryPattern
                 }
 
                 string icon = GetIcon(payment);
-                Console.WriteLine(icon);                
+                Console.WriteLine(icon);
             }
 
         }
@@ -59,8 +59,8 @@ namespace SimpleFactoryPattern
         {
             switch (payment.PaymentType)
             {
-                case PaymentType.Cash: return "[100]"; 
-                case PaymentType.CreditCard: return "[abc]"; 
+                case PaymentType.Cash: return "[100]";
+                case PaymentType.CreditCard: return "[abc]";
                 case PaymentType.BankTransfer: return "[-->]";
 
                 default: return string.Empty;
@@ -69,7 +69,7 @@ namespace SimpleFactoryPattern
 
         private static void VisitCalculateAmountTest()
         {
-            VisitFactory visitFactory = new VisitFactory();
+            VisitCalculatorFactory visitCalculatorFactory = new VisitCalculatorFactory();
 
             while (true)
             {
@@ -80,18 +80,14 @@ namespace SimpleFactoryPattern
                 if (double.TryParse(Console.ReadLine(), out double minutes))
                 {
                     TimeSpan duration = TimeSpan.FromMinutes(minutes);
-                  
-                    Visit visit = visitFactory.Create(visitType);
 
-                    decimal totalAmount = visit.CalculateCost(duration, 100);
+                    Visit visit = new Visit { Duration = duration, PricePerHour = 100 };
 
-                    if (totalAmount == 0)
-                        Console.ForegroundColor = ConsoleColor.Green;
-                    else
-                       if (totalAmount >= 200)
-                        Console.ForegroundColor = ConsoleColor.Red;
-                    else
-                        Console.ForegroundColor = ConsoleColor.White;
+                    IVisitCalculator visitCalculator = visitCalculatorFactory.Create(visitType);
+
+                    decimal totalAmount = visitCalculator.CalculateCost(visit.Duration, visit.PricePerHour);
+
+                    Console.ForegroundColor = ConsoleColorFactory.Create(totalAmount);
 
                     Console.WriteLine($"Total amount {totalAmount:C2}");
 

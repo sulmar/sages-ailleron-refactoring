@@ -1,22 +1,22 @@
 ﻿namespace SimpleFactoryPattern
 {
-    public class VisitFactory
+    public class VisitCalculatorFactory
     {
         private readonly Dictionary<string, Type> types = new Dictionary<string, Type>();
 
-        public VisitFactory()
+        public VisitCalculatorFactory()
         {
-            types.Add("N", typeof(NfzVisit));
-            types.Add("P", typeof(PrivateVisit));
-            types.Add("F", typeof(CompanyVisit));
-            types.Add("T", typeof(TeleVisit));
+            types.Add("N", typeof(NfzVisitCalculator));
+            types.Add("P", typeof(PrivateVisitCalculator));
+            types.Add("F", typeof(CompanyVisitCalculator));
+            types.Add("T", typeof(TeleVisitCalculator));
         }
 
-        public Visit Create(string symbol)
+        public IVisitCalculator Create(string symbol)
         {
             Type visitType = types[symbol];
 
-            return (Visit)Activator.CreateInstance(visitType);
+            return (IVisitCalculator)Activator.CreateInstance(visitType);
         }
     }
 }
