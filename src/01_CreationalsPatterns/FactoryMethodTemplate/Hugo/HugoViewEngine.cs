@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace FactoryMethodTemplate.Hugo
 {
+    // Concrete Product B
     public class HugoViewEngine : IViewEngine
     {
         public string Render(string viewName, IDictionary<string, object> context)

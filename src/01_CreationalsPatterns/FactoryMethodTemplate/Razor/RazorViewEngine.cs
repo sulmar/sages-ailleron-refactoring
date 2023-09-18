@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FactoryMethodTemplate.Razor
 {
-
+    // Concrete Product A
     public class RazorViewEngine : IViewEngine
     {
         public string Render(string viewName, IDictionary<string, object> context)
