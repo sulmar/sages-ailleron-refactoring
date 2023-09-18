@@ -1,4 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting.Logging;
+using System.Runtime.ConstrainedExecution;
 
 namespace SingletonPattern.UnitTests
 {
@@ -9,10 +11,11 @@ namespace SingletonPattern.UnitTests
         public void Create_CallTwice_ShouldBeTheSameInstance()
         {
             // Arrange
+            
 
             // Act
-            MessageService messageService = new MessageService();
-            PrintService printService = new PrintService();
+            MessageService messageService = new MessageService(Logger.Instance);
+            PrintService printService = new PrintService(Logger.Instance);
 
             // Assert
             Assert.AreSame(messageService.logger, printService.logger, "Different instances");

@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SingletonPattern
 {
-    public class Singleton<T>
+
+    public class ThreadSafeSingleton<T>
         where T : class, new()
     {
         private static object _syncLock = new object();
