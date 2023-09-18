@@ -1,7 +1,10 @@
 ﻿// Zasada podstawiania Liskov (Liskov Substitution Principle) - LSP  
 // w miejscu klasy bazowej można użyć dowolnej klasy pochodnej (zgodność wszystkich metod).
 
-// Przykład łamiący zasadę podstawiania Liskov
+
+
+Car car = new ElectricCar();
+car.StartEngine();
 
 
 
