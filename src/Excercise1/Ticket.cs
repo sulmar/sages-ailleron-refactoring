@@ -10,12 +10,10 @@ namespace Excercise1
     {
         public string MovieName { get; set; }
         public int ReleaseYear { get; set; }
-
+        public string AgeCategory { get; set; }  // G, PG, PG-13, R, NC-17
+        public string Category { get; set; }
         public string Place { get; set; }
-
         public decimal Price { get; set; }
-        public int NumberOfSeats { get; set; }
-
 
         public void PrintTicket()
         {
@@ -45,11 +43,11 @@ namespace Excercise1
         {
             if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
             {
-                Price = (basePrice * NumberOfSeats) * 0.8m; // Apply 20% discount for Monday
+                Price = (basePrice) * 0.8m; // Apply 20% discount for Monday
             }
             else
             {
-                Price = basePrice * NumberOfSeats;
+                Price = basePrice;
             }
         }
     }
