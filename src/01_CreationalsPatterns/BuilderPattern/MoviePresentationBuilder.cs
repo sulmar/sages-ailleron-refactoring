@@ -7,28 +7,26 @@ namespace BuilderPattern
     {
         private Movie movie = new Movie();
 
-        public IPresentationBuilder<Movie> AddFooter(byte[] logo)
+        public IBuld<Movie> AddFooter(byte[] logo)
         {
             throw new System.NotImplementedException();
 
             return this;
-
-
         }
 
-        public IPresentationBuilder<Movie> AddHeader(string title)
+        public ISlide<Movie> AddHeader(string title)
         {
             return this;
         }
 
-        public IPresentationBuilder<Movie> AddSlide(Slide slide)
+        public ISlideOrFooter<Movie> AddSlide(Slide slide)
         {
             movie.AddFrame(slide.Text, 3);
 
             return this;
         }
 
-        public IPresentationBuilder<Movie> AddSlides(IEnumerable<Slide> slides)
+        public ISlideOrFooter<Movie> AddSlides(IEnumerable<Slide> slides)
         {
             foreach (Slide slide in slides)
             {
