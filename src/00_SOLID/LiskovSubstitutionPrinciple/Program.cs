@@ -1,41 +1,44 @@
 ﻿// Zasada podstawiania Liskov (Liskov Substitution Principle) - LSP  
 // w miejscu klasy bazowej można użyć dowolnej klasy pochodnej (zgodność wszystkich metod).
 
+Document docPdf = new PDFDocument();
+Document docText = new TextDocument();
+
+docPdf.Print();
+
+((TextDocument)docPdf).Edit(); 
 
 
-Car car = new ElectricCar();
-car.StartEngine();
-
-
-
-public class Car
+class Document
 {
-    public virtual void StartEngine()
+    public virtual void Print()
     {
-        Console.WriteLine("Engine started.");
-    }
-
-    public virtual void Accelerate()
-    {
-        Console.WriteLine("Car is accelerating.");
+        Console.WriteLine("Printing a document...");
     }
 }
 
-public class ElectricCar : Car
+class PDFDocument : Document
 {
-    public override void StartEngine()
+    public override void Print()
     {
-        Console.WriteLine("Electric motor started.");
+        Console.WriteLine("Printing a PDF document...");
     }
 
-    public override void Accelerate()
+    public void Encrypt()
     {
-        Console.WriteLine("Electric car is accelerating.");
-    }
-
-    public void ChargeBattery()
-    {
-        Console.WriteLine("Battery is charging.");
+        Console.WriteLine("Encrypting a PDF document...");
     }
 }
 
+class TextDocument : Document
+{
+    public override void Print()
+    {
+        Console.WriteLine("Printing a text document...");
+    }
+
+    public void Edit()
+    {
+        Console.WriteLine("Editing a document...");
+    }
+}
