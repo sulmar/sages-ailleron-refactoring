@@ -6,7 +6,7 @@ Document docText = new TextDocument();
 
 docPdf.Print();
 
-((TextDocument)docPdf).Edit(); 
+((TextDocument)docPdf).Edit(); // Naruszenie zasady podstawiania Liskov (Liskov Substitution Principle) 
 
 
 class Document
