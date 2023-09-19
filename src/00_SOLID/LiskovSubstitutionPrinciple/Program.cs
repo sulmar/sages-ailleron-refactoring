@@ -1,6 +1,10 @@
 ﻿// Zasada podstawiania Liskov (Liskov Substitution Principle) - LSP  
 // w miejscu klasy bazowej można użyć dowolnej klasy pochodnej (zgodność wszystkich metod).
 
+
+// Zasada Liskov mówi o tym, że obiekt klasy pochodnej może być używany zamiennie
+// w miejscu obiektu klasy bazowej, nie wprowadzając nieoczekiwanych zachowań.
+
 using System.Reflection.Metadata;
 
 Document docPdf = new PDFDocument();
