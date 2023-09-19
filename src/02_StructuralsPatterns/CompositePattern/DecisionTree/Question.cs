@@ -1,24 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CompositePattern.DecisionTree
+﻿namespace CompositePattern.DecisionTree
 {
-    // Abstract Component
-    public abstract class Node
-    {
-        public string Content { get; }
-
-        protected Node(string content)
-        {
-            Content = content;
-        }
-
-        public abstract void Operation();
-    }
-
     public class Question : Node
     {
         public Question(
@@ -47,19 +28,6 @@ namespace CompositePattern.DecisionTree
             {
                 NegativeResponse.Operation();
             }
-        }
-    }
-
-
-    public class Decision : Node
-    {
-        public Decision(string content) : base(content)
-        {
-        }
-
-        public override void Operation()
-        {
-            Console.WriteLine(Content);
         }
     }
 }
