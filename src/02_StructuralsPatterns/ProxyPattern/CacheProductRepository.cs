@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.IO.Pipes;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace ProxyPattern
 {
@@ -19,5 +21,4 @@ namespace ProxyPattern
         {
         }
     }
-
 }
