@@ -1,8 +1,19 @@
+using CompositePattern.DecisionTree;
+
 namespace CompositePattern;
 
 class Program
 {
     static void Main(string[] args)
+    {
+        // TreeTest();
+
+
+        DecisionTree();
+
+    }
+
+    private static void TreeTest()
     {
         Group root = new();
         root.Add(new Shape());
@@ -14,35 +25,20 @@ class Program
         root.Add(group);
 
         root.Render();
-        
-
-        // DecisionTree();
-
     }
 
     private static void DecisionTree()
     {
-        Console.Write("Are you developer?");
+        Node welcome = new Decision("Welcome on Design Pattern in C# Course!");
+        Node notcourseforyou = new Decision("The Course is not for you.");
+        Node notwelcome = new Decision("Have a nice day.");
 
-        if (Response)
-        {
+        Node csharp = new Question("Do you know C#?", welcome, notcourseforyou);
+        Node developer = new Question("Are you developer?", csharp, notwelcome);
 
-            Console.Write("Do you know C#?");
-
-            if (Response)
-            {
-                Console.WriteLine("Welcome on Design Pattern in C# Course!");
-            }
-            else
-            {
-                Console.WriteLine("The Course is not for you.");
-            }
-
-        }
-        else
-        {
-            Console.WriteLine("Have a nice day.");
-        }
+        developer.Operation();
+        
+        
     }
 
     public static bool Response => Console.ReadKey().Key == ConsoleKey.Y;
