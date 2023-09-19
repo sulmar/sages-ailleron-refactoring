@@ -1,8 +1,17 @@
 ﻿namespace CompositePattern;
 
-public class Shape
+
+// Abstract Component
+public abstract class Component
 {
-    public void Render()
+    public abstract void Render();
+}
+
+// Concrete Component A
+// Leaf
+public class Shape : Component
+{
+    public override void Render()
     {
         Console.WriteLine("Render shape");
     }

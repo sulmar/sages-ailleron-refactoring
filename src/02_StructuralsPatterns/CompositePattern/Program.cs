@@ -3,10 +3,29 @@ namespace CompositePattern;
 class Program
 {
     static void Main(string[] args)
-    {       
-        Console.Write("Are you developer?");       
+    {
+        Group root = new();
+        root.Add(new Shape());
+        root.Add(new Shape());
 
-        if (Response) {
+        Group group = new Group();
+        group.Add(new Shape());
+
+        root.Add(group);
+
+        root.Render();
+        
+
+        // DecisionTree();
+
+    }
+
+    private static void DecisionTree()
+    {
+        Console.Write("Are you developer?");
+
+        if (Response)
+        {
 
             Console.Write("Do you know C#?");
 
@@ -24,8 +43,6 @@ class Program
         {
             Console.WriteLine("Have a nice day.");
         }
-
-
     }
 
     public static bool Response => Console.ReadKey().Key == ConsoleKey.Y;
