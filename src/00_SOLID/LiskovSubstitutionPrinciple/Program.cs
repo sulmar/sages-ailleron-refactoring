@@ -1,12 +1,20 @@
 ﻿// Zasada podstawiania Liskov (Liskov Substitution Principle) - LSP  
 // w miejscu klasy bazowej można użyć dowolnej klasy pochodnej (zgodność wszystkich metod).
 
+using System.Reflection.Metadata;
+
 Document docPdf = new PDFDocument();
 Document docText = new TextDocument();
+Document docWord = new WordDocument();
 
-docPdf.Print();
+Document doc = docWord;
 
-((TextDocument)docPdf).Edit(); // Naruszenie zasady podstawiania Liskov (Liskov Substitution Principle) 
+doc.Print();
+
+if (doc.CanEdit())
+{
+    doc.Edit();
+}
 
 
 class Document
@@ -14,6 +22,16 @@ class Document
     public virtual void Print()
     {
         Console.WriteLine("Printing a document...");
+    }
+
+    public virtual bool CanEdit()
+    {
+        return false;
+    }
+
+    public virtual void Edit()
+    {
+        Console.WriteLine("Editing a document...");
     }
 }
 
@@ -28,6 +46,11 @@ class PDFDocument : Document
     {
         Console.WriteLine("Encrypting a PDF document...");
     }
+
+    public override void Edit()
+    {
+        throw new NotSupportedException();
+    }
 }
 
 class TextDocument : Document
@@ -37,8 +60,16 @@ class TextDocument : Document
         Console.WriteLine("Printing a text document...");
     }
 
-    public void Edit()
+    public override bool CanEdit()
     {
-        Console.WriteLine("Editing a document...");
+        return true;
+    }
+}
+
+class WordDocument : Document
+{
+    public override bool CanEdit()
+    {
+        return true;
     }
 }
