@@ -1,10 +1,21 @@
 ﻿using Excercise1;
 
-Ticket ticket = new Ticket { MovieName = "Akademia pana Kleksa", ReleaseYear = 1983, Category = "Fantasy", AgeCategory = "G" };
+ITicketService ticketService = new TicketService(
+    new FakeMovieRepository(),
+    new ReservationService(),
+    new PlaceService(),
+    new EmailTicketSender());
 
-ticket.Reserve(1, 'A');
+var ticketParameters = new TicketParameters
+{
+    Title = "Akademia pana Kleksa",
+    When = DateTime.Parse("2023-09-19 20:00"),
+    Place = new Place(1, 'A'),
+    Email = "john@example.com"
+};
 
-ticket.CalculatePrice(20);
+
+Ticket ticket = ticketService.Buy(ticketParameters);
 
 ticket.PrintTicket();
-ticket.SendByEmail("john@example.com");
+
