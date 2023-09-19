@@ -14,11 +14,28 @@ namespace BuilderPattern
         {
             Console.WriteLine("Hello Builder Pattern!");
 
+
+            PresentationBuilderTest();
+
             //PhoneTest();
 
-            SalesReportTest();
+          //  SalesReportTest();
 
             // PersonTest();
+        }
+
+        private static void PresentationBuilderTest()
+        {
+            Presentation presentation = new Presentation();
+            presentation.AddSlide(new Slide("Refaktoring in C#"));
+            presentation.AddSlide(new Slide("Clean Code"));
+            presentation.AddSlide(new Slide("SOLID"));
+
+            var builder = new PdfPresentationBuilder();
+            presentation.Export(builder);
+
+            var document = builder.Build();
+
         }
 
         private static void PersonTest()

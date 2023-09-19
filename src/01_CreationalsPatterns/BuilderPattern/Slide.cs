@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BuilderPattern
 {
+
     public class Slide
     {
         public string Text { get; }
@@ -25,50 +26,40 @@ namespace BuilderPattern
             slides.Add(slide);
         }
 
-        public void Export(PresentationFormat format)
+        public void Export<T>(IPresentationBuilder<T> builder)
         {
-            if (format == PresentationFormat.PDF)
+            builder.AddSlide(new Slide("Copyright"));
+            foreach (Slide slide in slides)
             {
-                var pdf = new PdfDocument();
-                pdf.AddPage("Copyright");
-                foreach(Slide slide in slides)
-                {
-                    pdf.AddPage(slide.Text);
-                }                
-            }
-            else if (format == PresentationFormat.Movie)
-            {
-                var movie = new Movie();
-                movie.AddFrame("Copyright", 3);
-                foreach (Slide slide in slides)
-                {
-                    movie.AddFrame(slide.Text, 3);
-                }
+                builder.AddSlide(slide);
             }
         }
     }
 
-    public enum PresentationFormat
-    {
-        PDF,
-        Image,
-        PowerPoint,
-        Movie
-    }
+    
 
-    public class PdfDocument
+    // Concrete Product
+    public class PdfDocument 
     {
         public void AddPage(string text)
         {
-            Console.WriteLine($"Add a page to PDF");
+            Console.WriteLine($"Add a {text} page to PDF");
         }
     }
 
-    public class Movie
+    public class Movie 
     {
         public void AddFrame(string text, int duration)
         {
             Console.WriteLine($"Add a frame to the movie");
+        }
+    }
+
+    public class PowerPoint
+    {
+        public void Add(string text)
+        {
+            Console.WriteLine($"Add a text to the powerpoint");
         }
     }
 }
