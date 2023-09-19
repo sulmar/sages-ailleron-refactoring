@@ -14,15 +14,11 @@ namespace BuilderPattern
 
         public void Export<T>(IPresentationBuilder<T> builder)
         {
-            builder.AddHeader("Demo");
-
-            builder.AddSlide(new Slide("Copyright"));
-            foreach (Slide slide in slides)
-            {
-                builder.AddSlide(slide);
-            }
-
-            builder.AddFooter(new byte[] { 1, 2, 3 });
+            builder
+                .AddHeader("Demo")
+                .AddSlide(new Slide("Copyright"))
+                .AddSlides(slides)
+                .AddFooter(new byte[] { 1, 2, 3 });
         }
     }
 }

@@ -34,6 +34,12 @@ namespace BuilderPattern
             var builder = new PdfPresentationBuilder();
             presentation.Export(builder);
 
+            // Fluent Api
+            //builder
+            //    .AddHeader()
+            //    .AddSlide()
+            //    .AddFooter();
+
             var document = builder.Build();
 
         }

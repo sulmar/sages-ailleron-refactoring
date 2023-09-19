@@ -1,23 +1,41 @@
-﻿namespace BuilderPattern
+﻿using System.Collections.Generic;
+
+namespace BuilderPattern
 {
     // Concrete Builder B
     public class MoviePresentationBuilder : IPresentationBuilder<Movie>
     {
         private Movie movie = new Movie();
 
-        public void AddFooter(byte[] logo)
+        public IPresentationBuilder<Movie> AddFooter(byte[] logo)
         {
             throw new System.NotImplementedException();
+
+            return this;
+
+
         }
 
-        public void AddHeader(string title)
+        public IPresentationBuilder<Movie> AddHeader(string title)
         {
-            throw new System.NotImplementedException();
+            return this;
         }
 
-        public void AddSlide(Slide slide)
+        public IPresentationBuilder<Movie> AddSlide(Slide slide)
         {
             movie.AddFrame(slide.Text, 3);
+
+            return this;
+        }
+
+        public IPresentationBuilder<Movie> AddSlides(IEnumerable<Slide> slides)
+        {
+            foreach (Slide slide in slides)
+            {
+                this.AddSlide(slide);
+            }
+
+            return this;
         }
 
         public Movie Build()
