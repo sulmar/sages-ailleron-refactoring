@@ -34,6 +34,7 @@ namespace StatePattern
             }
             else if (Status == OrderStatus.Picking)
             {
+                Console.WriteLine("Twoje zamówienie jest właśnie kompletowane...");
                 Status = OrderStatus.Shipping;
             }
             else if (Status == OrderStatus.Shipping)
