@@ -8,6 +8,7 @@ class Program
     {
         // TreeTest();
 
+        DecisionTreeBuilderTest();
 
         DecisionTree();
 
@@ -25,6 +26,27 @@ class Program
         root.Add(group);
 
         root.Render();
+    }
+
+    private static void DecisionTreeBuilderTest()
+    {
+        Node welcome = new FluentNodeBuilder().AddQuestion("Welcome on Design Pattern in C# Course!").BuildDecision();
+        Node notcourseforyou = new FluentNodeBuilder().AddQuestion("The Course is not for you.").BuildDecision();
+        Node notwelcome = new FluentNodeBuilder().AddQuestion("Have a nice day.").BuildDecision();
+
+        Node csharp = new FluentNodeBuilder()
+            .AddQuestion("Do you know C#?")
+            .WithPositiveResponse(welcome)
+            .WithNegativeResponse(notcourseforyou)
+            .BuildQuestion();
+
+        Node developer = new FluentNodeBuilder()
+            .AddQuestion("Are you developer?")
+            .WithPositiveResponse(csharp)
+            .WithNegativeResponse(notwelcome)
+            .BuildQuestion();
+
+        developer.Operation();
     }
 
     private static void DecisionTree()
