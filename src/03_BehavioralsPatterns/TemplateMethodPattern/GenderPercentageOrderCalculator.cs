@@ -1,26 +1,17 @@
 ﻿namespace TemplateMethodPattern
 {
     // Gender - 20% upustu dla kobiet
-    public class GenderPercentageOrderCalculator
+    public class GenderPercentageOrderCalculator : PercentageOrderCalculator
     {
         private readonly Gender gender;
 
-        private readonly decimal percentage;
-
         public GenderPercentageOrderCalculator(Gender gender, decimal percentage)
+            : base(percentage) 
         {
-            this.gender = gender;
-            this.percentage = percentage;
+            this.gender = gender;            
         }
 
-        public decimal CalculateDiscount(Order order)
-        {
-            if (order.Customer.Gender == gender)
-            {
-                return order.Amount * percentage;
-            }
-            else
-                return 0;
-        }
+        public override bool CanDiscount(Order order) => order.Customer.Gender == gender;
+
     }
 }
