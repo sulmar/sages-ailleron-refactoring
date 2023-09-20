@@ -26,7 +26,7 @@ namespace StatePattern.UnitTests
             // Arrange
             LightSwitch lightSwitch = new LightSwitch();
 
-            // Act
+            // Act            
             lightSwitch.Push();
 
             // Assert

@@ -23,7 +23,7 @@ namespace StatePattern
             IsPaid = true;
         }
 
-        public void Confirm()
+        public void Confirm() 
         {
             if (Status == OrderStatus.Placement)
             {

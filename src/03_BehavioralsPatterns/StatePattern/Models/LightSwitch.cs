@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace StatePattern
 {
@@ -14,6 +15,10 @@ namespace StatePattern
 
         // Handle
         public abstract void Push();
+
+        // Handle
+        public abstract bool CanPush();
+     
     }
 
     // Concrete State A
@@ -22,13 +27,23 @@ namespace StatePattern
         public Off(LightSwitch lightSwitch)
            : base(lightSwitch)
         {            
+        }        
+
+        public override bool CanPush()
+        {
+            return true;
         }
 
         public override void Push()
         {
-            Console.WriteLine("załącz przekaźnik");
+            if (CanPush())
+            {
+                Console.WriteLine("załącz przekaźnik");
 
-            lightSwitch.SetState(new On(lightSwitch));
+                lightSwitch.SetState(new On(lightSwitch));
+            }
+
+            throw new InvalidOperationException();
         }
     }
 
@@ -37,6 +52,11 @@ namespace StatePattern
     {
         public On(LightSwitch lightSwitch) : base(lightSwitch)
         {
+        }
+
+        public override bool CanPush()
+        {
+            return true;
         }
 
         public override void Push()
