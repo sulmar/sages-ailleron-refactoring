@@ -2,20 +2,11 @@
 
 namespace StrategyPattern
 {
-
-    // Concrete Strategy A
-    public class HappyHoursPercentageCalculateDiscountStrategy : ICalculateDiscountStrategy
+    partial class HappyHoursFixedCalculateDiscountStrategy : ICalculateDiscountStrategy
     {
         private readonly TimeSpan from;
         private readonly TimeSpan to;
-        private decimal percentage;
-
-        public HappyHoursPercentageCalculateDiscountStrategy(TimeSpan from, TimeSpan to, decimal percentage)
-        {
-            this.from = from;
-            this.to = to;
-            this.percentage = percentage;
-        }
+        private decimal amount;
 
         public bool CanDiscount(Order order)
         {
@@ -24,7 +15,7 @@ namespace StrategyPattern
 
         public decimal Discount(Order order)
         {
-            return order.Amount * percentage;
+            return amount;
         }
 
         public decimal NoDiscount()
