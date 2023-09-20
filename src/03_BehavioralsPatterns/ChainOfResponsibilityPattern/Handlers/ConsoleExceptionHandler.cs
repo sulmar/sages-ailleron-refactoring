@@ -5,11 +5,11 @@ namespace ChainOfResponsibilityPattern.Handlers
 {
     public class ConsoleExceptionHandler : MessageHandler
     {
-        public override void Handle(Message message)
+        public override void Handle(MessageContext context)
         {
             try
             {
-                base.Handle(message);
+                base.Handle(context);
             }
             catch(Exception e)
             {

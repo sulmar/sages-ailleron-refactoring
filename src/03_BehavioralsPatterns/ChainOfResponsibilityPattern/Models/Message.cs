@@ -12,7 +12,18 @@ namespace ChainOfResponsibilityPattern.Models
     {
         public string From { get; set; }
         public string Title { get; set; }   
-        public string Body { get; set; }
+        public string Body { get; set; }        
+    }
+
+    public class MessageContext
+    {
+        public Message Message { get; set; }
+        public string TaxNumber { get; set; }
+
+        public MessageContext(Message message)
+        {
+            Message = message;
+        }
     }
 
     public class MessageProcessor
@@ -39,7 +50,7 @@ namespace ChainOfResponsibilityPattern.Models
 
         public string Process(Message message)
         {
-            handler.Handle(message);
+            handler.Handle(new MessageContext(message));
 
             throw new NotImplementedException();
         }

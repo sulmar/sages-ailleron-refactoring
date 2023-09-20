@@ -48,6 +48,10 @@ namespace MediatorPattern
                 app.UseHsts();
             }
 
+            app.Use(async (context, next) =>
+            {                
+                await next.Invoke();                
+            });
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseEndpoints(endpoints =>

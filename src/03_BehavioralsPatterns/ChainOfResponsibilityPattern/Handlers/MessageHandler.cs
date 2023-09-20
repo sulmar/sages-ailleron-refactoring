@@ -7,9 +7,9 @@ namespace ChainOfResponsibilityPattern.Handlers
     {
         protected IMessageHandler next;
 
-        public virtual void Handle(Message message)
+        public virtual void Handle(MessageContext context)
         {
-            next?.Handle(message);
+            next?.Handle(context);
         }
 
         public void SetNext(IMessageHandler next)

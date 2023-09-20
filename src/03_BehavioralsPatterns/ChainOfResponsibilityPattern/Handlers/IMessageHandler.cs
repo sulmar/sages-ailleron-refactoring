@@ -6,6 +6,6 @@ namespace ChainOfResponsibilityPattern.Handlers
     public interface IMessageHandler
     {
         void SetNext(IMessageHandler next);
-        void Handle(Message message);
+        void Handle(MessageContext context);
     }
 }
