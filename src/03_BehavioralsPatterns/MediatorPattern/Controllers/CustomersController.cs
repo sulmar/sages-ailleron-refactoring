@@ -1,5 +1,9 @@
-﻿using MediatorPattern.IServices;
+﻿using MediatorPattern.Events;
+using MediatorPattern.IServices;
 using MediatorPattern.Models;
+using MediatorPattern.Requests;
+using MediatorPattern.Requests.Customers;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,54 +12,40 @@ using System.Threading.Tasks;
 
 namespace MediatorPattern.Controllers
 {
+    // Install-Package mediatr
+
     [Route("api/[controller]")]
     public class CustomersController : ControllerBase
     {
-        private readonly ICustomerRepository customerRepository;
-        private readonly IMessageService messageService;
+        private readonly IMediator mediator;
 
-        public CustomersController(ICustomerRepository customerRepository, IMessageService messageService)
+        public CustomersController(IMediator mediator)
         {
-            this.customerRepository = customerRepository;
-            this.messageService = messageService;
+            this.mediator = mediator;
         }
-
-        /*
-            POST https://localhost:5001/api/customers HTTP/1.1
-            content-type: application/json
-
-            {
-                "FirstName": "John",
-                "LastName": "Smith",
-                "Email": "john.smith@domain.com"
-            }
-  
-        */
 
         [HttpPost]
         public IActionResult Post([FromBody] Customer customer)
         {
-            customerRepository.Add(customer);
-
-            messageService.Send(customer.Email, $"Welcome {customer.FullName}");
+            mediator.Publish(new AddedCustomerEvent(customer));            
 
             return Ok();
         }
 
         // GET https://localhost:5001/api/customers HTTP/1.1
         [HttpGet]
-        public ActionResult<IEnumerable<Customer>> Get()
+        public async Task<ActionResult<IEnumerable<Customer>>> Get()
         {
-            var customers = customerRepository.Get();
+            var customers = await mediator.Send(new GetCustomersRequest());
             return Ok(customers);
         }
 
         // GET https://localhost:5001/api/customers/1 HTTP/1.1
         [HttpGet("{id}")]
-        public ActionResult<Customer> Get(int id)
+        public async Task<ActionResult<Customer>> Get(int id)
         {
-            var customers = customerRepository.Get(id);
-            return Ok(customers);
+            var customer = await mediator.Send(new GetById(id));
+            return Ok(customer);
         }
 
     }

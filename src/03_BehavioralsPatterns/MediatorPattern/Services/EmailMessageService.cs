@@ -7,7 +7,7 @@ namespace MediatorPattern.Services
     {
         public void Send(string number, string message)
         {
-            Console.WriteLine($"Send sms {message} to {number}");
+            Console.WriteLine($"Send email {message} to {number}");
         }
     }
 }
