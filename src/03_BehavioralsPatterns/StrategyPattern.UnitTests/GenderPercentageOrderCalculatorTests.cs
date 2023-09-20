@@ -1,4 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using StrategyPattern.CanDiscountStrategies;
+using StrategyPattern.DiscountStrategies;
 using System;
 
 namespace StrategyPattern.UnitTests
@@ -11,9 +13,10 @@ namespace StrategyPattern.UnitTests
         [TestInitialize]
         public void Init()
         {
-            ICalculateDiscountStrategy calculateDiscountStrategy = new GenderPercentageCalculateDiscountStrategy(Gender.Female, 0.1m);
+            ICanDiscountStrategy canDiscountStrategy = new GenderCanDiscountStrategy(Gender.Female);
+            IDiscountStrategy discountStrategy = new PercentageDiscountStrategy(0.1m);
 
-            calculator = new OrderCalculator(calculateDiscountStrategy);
+            calculator = new OrderCalculator(canDiscountStrategy, discountStrategy);
         }
 
         [TestMethod]

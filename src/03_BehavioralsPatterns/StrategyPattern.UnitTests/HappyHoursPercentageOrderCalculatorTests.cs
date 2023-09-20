@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using StrategyPattern.CanDiscountStrategies;
+using StrategyPattern.DiscountStrategies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +19,11 @@ namespace StrategyPattern.UnitTests
         {
             var from = TimeSpan.Parse("09:00");
             var to = TimeSpan.Parse("15:00");
-
-            ICalculateDiscountStrategy calculateDiscountStrategy = new HappyHoursPercentageCalculateDiscountStrategy(from, to, 0.1m);
-            calculator = new OrderCalculator(calculateDiscountStrategy);
+            
+            ICanDiscountStrategy canDiscountStrategy = new HappyHoursCanDiscountStrategy(from, to);
+            IDiscountStrategy discountStrategy = new PercentageDiscountStrategy(0.1m);
+            
+            calculator = new OrderCalculator(canDiscountStrategy, discountStrategy);
         }
 
         [TestMethod]
