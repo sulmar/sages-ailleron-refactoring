@@ -11,7 +11,7 @@ namespace MediatorPattern.Handlers
     {
         private readonly ICustomerRepository customerRepository;
 
-        public AddCustomerToRepository(ICustomerRepository customerRepository)
+        public AddCustomerToRepository(ICustomerRepository customerRepository, IMediator mediator)
         {
             this.customerRepository = customerRepository;
         }
@@ -19,7 +19,7 @@ namespace MediatorPattern.Handlers
         public Task Handle(AddedCustomerEvent notification, CancellationToken cancellationToken)
         {
             customerRepository.Add(notification.Customer);
-
+            
             return Task.CompletedTask;
         }
     }
