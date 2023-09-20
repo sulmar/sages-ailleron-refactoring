@@ -1,12 +1,13 @@
-﻿using System;
+﻿using ChainOfResponsibilityPattern.Handlers;
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ChainOfResponsibilityPattern.Models
 {
+
     public class Message
     {
         public string From { get; set; }
@@ -18,39 +19,33 @@ namespace ChainOfResponsibilityPattern.Models
     {
         private string[] whiteList;
 
+        private MessageHandler handler;
+
         public MessageProcessor(string[] whiteList)
         {
             this.whiteList = whiteList;
+
+            MessageHandler exceptionHandler = new ConsoleExceptionHandler();
+            MessageHandler whiteListHandler = new FromWhiteListHandler(whiteList);
+            MessageHandler titleHandler = new TitleContainsTextHandler("Order");
+            MessageHandler taxNumberHandler = new ExtractTaxNumberHandler();
+
+            exceptionHandler.SetNext(whiteListHandler);
+            whiteListHandler.SetNext(titleHandler);
+            titleHandler.SetNext(taxNumberHandler);
+
+            handler = exceptionHandler;
         }
 
         public string Process(Message message)
-        {            
-            if (!whiteList.Contains(message.From))
-            {
-                throw new Exception();
-            }
+        {
+            handler.Handle(message);
 
-            if (!message.Title.Contains("Order"))
-            {
-                throw new Exception();
-            }
-
-            string pattern = @"\b(\d{10}|\d{3}-\d{3}-\d{2}-\d{2})\b";
-            Regex regex = new Regex(pattern);
-            Match match = regex.Match(message.Body);
-
-            if (match.Success)
-            {
-                string taxNumber = match.Value;
-
-                return taxNumber;
-            }
-            else
-            {
-                throw new FormatException();
-            }
-
-            
+            throw new NotImplementedException();
         }
+
+       
+
+      
     }
 }
